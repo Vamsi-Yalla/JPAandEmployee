@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<title>Employee Management Details</title>
+	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
+</head>
+
+<body>
+	
+	     <h1 align="center">Save Employee Details</h1>
+	     </br></br>
+	<form name="myForm" action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post" align="center" th:onsubmit="validateForm()">
+		<label for="fname">Frist Name: </label>
+		<input type="text" th:field="*{fristName}" name="fname"  autocomplete="off"  id="fname"  title="Please enter your 1st name">
+		</br>
+		</br>
+		<label for="lname">Last Name: </label>
+		<input type="text" th:field="*{lastName}" name="lname" >
+		</br>
+			</br>
+			<label for="email">Email: </label>
+		<input type="email" th:field="*{email}" name="email" >
+		</br>
+			</br>
+			<label for="loc">Location: </label>
+		<input type="text" th:field="*{location}" name="loc" >
+		</br>
+		</br>
+		<button type="submit">Submit</button>
+	</form>
+</body>
+
+</html>

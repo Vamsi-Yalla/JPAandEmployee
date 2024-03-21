@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>
+		Employee Management System
+	</title>
+
+</head>
+
+
+<body>
+	<form align="center">
+		<h3>Employees List</h3>
+
+		<a th:href="@{/shownewEmployeeForm}">Add Employees</a>
+		</br>
+		</br>
+		<table border="1" align="center">
+			<thead>
+				<tr>
+					<th>Employee Frist Name</th>
+					<th>Employee Last Name</th>
+					<th>Email</th>
+					<th>Location</th>
+					<th>Update</th>
+					<th>Deletee</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${listEmployees}">
+					<td th:text="${employee.fristName}"></td>
+					<td th:text="${employee.lastName}"></td>
+					<td th:text="${employee.email}"></td>
+					<td th:text="${employee.location}"></td>
+					<td><a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}">Update</a></td>
+					<td>
+						<a id="deleteEmployee" th:href="@{/deleteEmployee/{id}(id=${employee.id})}">
+							<button id="deletebutton" type="button">Delete</button>
+						</a>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+    $('#deletebutton').click(function () {
+        if (confirm("Are you sure want to delete this employee details")) {
+            $.ajax({
+                type: "DELETE",
+                url: $('#deleteEmployee').attr('action'),
+                success: function () {
+                    window.location.reload();
+                },
+                error: function () {
+                    alert("An error is occurred while trying to delete this employee details");
+                }
+            });
+        }
+    });
+});
+
+	</script>
+</body>
+
+</html>
